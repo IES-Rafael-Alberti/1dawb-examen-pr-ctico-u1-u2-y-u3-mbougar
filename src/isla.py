@@ -225,7 +225,7 @@ def genera_pista(posicion_tesoro: tuple, posicion: tuple):
         return genera_pista_columnas(posicion_tesoro, posicion) or genera_pista_filas(posicion_tesoro, posicion)
 
 
-def genera_pista_filas(posicion_tesoro: tuple, posicion: tuple):
+def genera_pista_filas(posicion_tesoro: tuple, posicion: tuple) -> str:
     """Genera una pista basada en la comparación de filas.
     :param posicion_tesoro: La posición del tesoro.
     :param posicion: La posición para la que se genera la pista.
@@ -239,7 +239,7 @@ def genera_pista_filas(posicion_tesoro: tuple, posicion: tuple):
     return ""
 
 
-def genera_pista_columnas(posicion_tesoro: tuple, posicion: tuple):
+def genera_pista_columnas(posicion_tesoro: tuple, posicion: tuple) -> str:
     """Genera una pista basada en la comparación de columnas.
     :param posicion_tesoro: La posición del tesoro.
     :param posicion: La posición para la que se genera la pista.
@@ -308,8 +308,10 @@ def procesar_movimiento(posicion: tuple, mapa: list) -> int:
     return resultado
 
 
-def simbolo_celda(celda: str):
-    """Retorna el símbolo a pintar en la celda"""
+def simbolo_celda(celda: str) -> str:
+    """Retorna el símbolo a pintar en la celda.
+    :param celda: valor str que está en una posicion del mapa del juego
+    """
     if celda != CELDA_VACIA:
         return DESCONOCIDO
     else:
@@ -317,9 +319,11 @@ def simbolo_celda(celda: str):
 
 
 def imprimir_mapa_oculto(mapa: list, posicion_jugador: tuple):
-    """Imprime el mapa sin revelar el tesoro ni las trampas."""
-    """for fila in mapa:
-        print(" ".join([simbolo_celda(celda) for celda in fila]))"""
+    """Imprime el mapa sin revelar el tesoro ni las trampas.
+
+    :param mapa: El lista de las posiciones del juego.
+    :param posicion_jugador: tupla que representa la posicion del jugador en la lista mapa
+    """
     print("    ╔══" + "═╦══" * (DIMENSIONES - 1)  + "═╗")
     print("    ║", end="")
     for numero in range(1, DIMENSIONES + 1):
@@ -369,7 +373,10 @@ def muestra_resultado_del_movimiento(resultado: int, nueva_posicion: tuple, mapa
 
 
 def muestra_estado_mapa(mapa: list, posicion_jugador: tuple):
-    """Muestra el mapa y la posición del jugador."""
+    """Muestra el mapa y la posición del jugador.
+    :param mapa: El lista de las posiciones del juego.
+    :param posicion_jugador: tupla que representa la posicion del jugador en la lista mapa
+    """
 
     imprimir_mapa_oculto(mapa, posicion_jugador)
     print(f"Tu posición es {(posicion_jugador[0] + 1, posicion_jugador[1] + 1)}")
